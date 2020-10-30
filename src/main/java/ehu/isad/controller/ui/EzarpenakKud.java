@@ -27,7 +27,7 @@ public class EzarpenakKud implements Initializable {
 
   public void getEzarpenak(){
    // datubasetik atzitu ezarpenak
-    List<Ezarpena> zerrenda = EzarpenakDBKud.getInstantzia().lortuEzarpenak();
+    List<Ezarpenak> zerrenda = EzarpenakDBKud.getInstantzia().lortuEzarpenak();
 
     ezarpenak.setText(zerrenda.toString());
   }

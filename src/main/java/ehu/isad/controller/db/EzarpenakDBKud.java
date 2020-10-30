@@ -1,6 +1,7 @@
 package ehu.isad.controller.db;
 
 import ehu.isad.model.Ezarpena;
+import ehu.isad.model.Herrialde;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,23 +20,22 @@ public class EzarpenakDBKud {
 
   private EzarpenakDBKud (){}
 
-  public List<Ezarpena> lortuEzarpenak(){
+  public List<Herrialde> lortuEzarpenak(){
 
-    List<Ezarpena> emaitza = new ArrayList<>();
+    List<Herrialde> emaitza = new ArrayList<>();
     DBKudeatzaile dbkud = DBKudeatzaile.getInstantzia();
 
-    String query = "select * from properties";
+    String query = "select herrialdea,artista,abestia from Ordezkaritza where urtea=YEAR(CURDATE())";
     ResultSet rs = dbkud.execSQL(query);
 
     try {
       while (rs.next()) {
+        String herrialdea = rs.getString("herrialdea");
+        String artista = rs.getString("artista");
+        String abestia = rs.getString("abestia");
 
-        Integer erabID = rs.getInt("userid");
-        String key = rs.getString("key");
-        String value = rs.getString("value");
 
-        Ezarpena ezarpena = new Ezarpena(erabID, key, value);
-        emaitza.add(ezarpena);
+        emaitza.add(new Herrialde(herrialdea,artista,abestia));
       }
     }catch (SQLException e){
       System.err.println(e);
