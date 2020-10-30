@@ -2,6 +2,7 @@ package ehu.isad;
 
 import ehu.isad.controller.ui.NagusiaKud;
 import ehu.isad.controller.ui.EzarpenakKud;
+import ehu.isad.controller.ui.TaulaController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,11 +15,13 @@ public class Main extends Application {
 
   private Parent nagusiaUI;
   private Parent ezarpenakUI;
+  private Parent taulaUI;
 
   private Stage stage;
 
-  private NagusiaKud nagusiaKud;
+  private EzarpenakKud nagusiaKud;
   private EzarpenakKud ezarpenakKud;
+  private TaulaController taulaKud;
 
 
   @Override
@@ -28,16 +31,16 @@ public class Main extends Application {
     pantailakKargatu();
 
     stage.setTitle("Ezarpenak lortu");
-    stage.setScene(new Scene(nagusiaUI, 450, 275));
+    stage.setScene(new Scene(taulaUI, 450, 275));
     stage.show();
   }
 
   private void pantailakKargatu() throws IOException {
 
-    FXMLLoader loaderKautotu = new FXMLLoader(getClass().getResource("/NagusiaUI.fxml"));
-    nagusiaUI = (Parent) loaderKautotu.load();
-    nagusiaKud = loaderKautotu.getController();
-    nagusiaKud.setMainApp(this);
+    FXMLLoader loaderKautotu = new FXMLLoader(getClass().getResource("/taulaFroga.fxml"));
+    taulaUI = (Parent) loaderKautotu.load();
+    taulaKud = loaderKautotu.getController();
+    taulaKud.setMainApp(this);
 
     FXMLLoader loaderMain = new FXMLLoader(getClass().getResource("/EzarpenakUI.fxml"));
     ezarpenakUI = (Parent) loaderMain.load();
