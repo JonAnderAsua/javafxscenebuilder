@@ -19,4 +19,6 @@ public class Herrialde {
     public void bozkatu(){boz=true;}
 
     public boolean bozkatuDu(){return boz;}
+
+    public String getName(){return izena;}
 }

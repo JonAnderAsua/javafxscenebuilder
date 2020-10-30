@@ -13,13 +13,13 @@ public class Main extends Application {
 
   private Parent hasieraUI;
   private Parent herriAukeratuUI;
-  private Parent taulaUI;
+  private Parent bozkatuDuUI;
 
   private Stage stage;
 
   private HasieraKud hasieraKud;
   private HerrAukKud herriKud;
-  private HasieraKud hasKud;
+  private BozDuKud bozDuKud;
 
 
   @Override
@@ -35,15 +35,32 @@ public class Main extends Application {
 
   private void pantailakKargatu() throws IOException {
 
+
+    //Hasierako pantaila kargatu
     FXMLLoader loaderKautotu = new FXMLLoader(getClass().getResource("/hasiera.fxml"));
     hasieraUI = (Parent) loaderKautotu.load();
-    hasKud = loaderKautotu.getController();
-    hasKud.setMainApp(this);
+    hasieraKud = loaderKautotu.getController();
+    hasieraKud.setMainApp(this);
 
+
+    //Herrialdea aukeratzeko bozkatu
     FXMLLoader loaderMain = new FXMLLoader(getClass().getResource("/EzarpenakUI.fxml"));
     herriAukeratuUI = (Parent) loaderMain.load();
     herriKud = loaderMain.getController();
     herriKud.setMainApp(this);
+
+
+    //Aukeratutako herrialdea bozkatu badu
+    FXMLLoader loaderBozBai = new FXMLLoader(getClass().getResource("/bozkatuDu.fxml"));
+    bozkatuDuUI = (Parent) loaderMain.load();
+    bozDuKud = loaderMain.getController();
+    bozDuKud.setMainApp(this);
+
+
+    //Aukeratutako herrialdea bozkatzeko
+
+
+
   }
 
 
@@ -64,4 +81,10 @@ public class Main extends Application {
     stage.show();
     herriKud.hasi();
   }
+
+  public void hasieraErakutsi(){
+    stage.setScene(new Scene(hasieraUI, 450, 275));
+    stage.show();
+  }
+
 }
