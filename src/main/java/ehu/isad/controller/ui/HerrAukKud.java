@@ -40,7 +40,7 @@ public class HerrAukKud {
     void aukeratu(ActionEvent event) {
         Herrialde h = comboBoxId.getValue();
         if(h.bozkatuDu()){
-            main.bozkatuDuErakutsi();
+            main.bozkatuDuErakutsi(h);
         }
         else{
             h.bozkatu();

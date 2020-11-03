@@ -33,8 +33,8 @@ public class BozDuKud {
 
     @FXML
     void bueltatu(ActionEvent event) {
-        main.start();
-    }
+        //Top 3ra bidali
+   }
 
     public void setMainApp(Main m){main = m;}
 

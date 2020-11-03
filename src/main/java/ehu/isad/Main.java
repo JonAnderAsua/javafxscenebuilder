@@ -1,6 +1,7 @@
 package ehu.isad;
 
 import ehu.isad.controller.ui.*;
+import ehu.isad.model.Herrialde;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,12 +15,14 @@ public class Main extends Application {
   private Parent hasieraUI;
   private Parent herriAukeratuUI;
   private Parent bozkatuDuUI;
+  private Parent bozTaulaUI;
 
   private Stage stage;
 
   private HasieraKud hasieraKud;
   private HerrAukKud herriKud;
   private BozDuKud bozDuKud;
+  private BozTaulaKud bozTaulaKud;
 
 
   @Override
@@ -58,7 +61,12 @@ public class Main extends Application {
 
 
     //Aukeratutako herrialdea bozkatzeko
+    FXMLLoader loaderBozTaula = new FXMLLoader(getClass().getResource("/bozTaula.fxml"));
+    bozTaulaUI = (Parent) loaderMain.load();
+    bozTaulaKud = loaderMain.getController();
+    bozTaulaKud.setMainApp(this);
 
+    //Top 3
 
 
   }
@@ -87,4 +95,12 @@ public class Main extends Application {
     stage.show();
   }
 
+  public void bozkatuDuErakutsi(Herrialde h) {
+    stage.setScene(new Scene(bozkatuDuUI,450,275));
+    stage.show();
+    bozDuKud.hasieratu(h);
+  }
+
+  public void bozTaulaErakutsi(Herrialde h) {
+  }
 }
