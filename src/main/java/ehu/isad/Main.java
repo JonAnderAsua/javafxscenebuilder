@@ -16,6 +16,7 @@ public class Main extends Application {
   private Parent herriAukeratuUI;
   private Parent bozkatuDuUI;
   private Parent bozTaulaUI;
+  private Parent topUI;
 
   private Stage stage;
 
@@ -23,6 +24,7 @@ public class Main extends Application {
   private HerrAukKud herriKud;
   private BozDuKud bozDuKud;
   private BozTaulaKud bozTaulaKud;
+  private TopKud topKud;
 
 
   @Override
@@ -67,8 +69,10 @@ public class Main extends Application {
     bozTaulaKud.setMainApp(this);
 
     //Top 3
-
-
+    FXMLLoader loaderTop = new FXMLLoader((getClass().getResource("top.fxml")));
+    topUI = (Parent) loaderMain.load();
+    topKud = loaderMain.getController();
+    topKud.setMainApp(this);
   }
 
 

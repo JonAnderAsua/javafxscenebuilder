@@ -14,7 +14,7 @@ public class EzarpenakDBKud {
 
   private static EzarpenakDBKud instantzia = new EzarpenakDBKud();
 
-  public static EzavoidrpenakDBKud getInstantzia(){
+  public static EzarpenakDBKud getInstantzia(){
       return instantzia;
   };
 

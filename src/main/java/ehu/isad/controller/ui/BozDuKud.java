@@ -5,7 +5,6 @@ import java.util.ResourceBundle;
 
 import ehu.isad.Main;
 import ehu.isad.model.Herrialde;
-import ehu.isad.utils.Irudia;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
