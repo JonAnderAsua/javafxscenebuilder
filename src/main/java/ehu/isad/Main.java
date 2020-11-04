@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class Main extends Application {
 
@@ -26,6 +27,12 @@ public class Main extends Application {
   private BozTaulaKud bozTaulaKud;
   private TopKud topKud;
 
+  private Scene hasieraScene = new Scene(hasieraUI,450,275);
+  private Scene herriAukScene = new Scene(herriAukeratuUI,450,275);
+  private Scene bozkatuDuScene = new Scene(bozkatuDuUI,450,275);
+  private Scene bozTaulaScene = new Scene(bozTaulaUI,450,275);
+  private Scene topScene = new Scene(topUI,450,275);
+
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -34,7 +41,7 @@ public class Main extends Application {
     pantailakKargatu();
 
     stage.setTitle("Eurobisioa");
-    stage.setScene(new Scene(hasieraUI, 450, 275));
+    stage.setScene(hasieraScene);
     stage.show();
   }
 
@@ -49,7 +56,7 @@ public class Main extends Application {
 
 
     //Herrialdea aukeratzeko bozkatu
-    FXMLLoader loaderMain = new FXMLLoader(getClass().getResource("/EzarpenakUI.fxml"));
+    FXMLLoader loaderMain = new FXMLLoader(getClass().getResource("/herrAukeratu.fxml"));
     herriAukeratuUI = (Parent) loaderMain.load();
     herriKud = loaderMain.getController();
     herriKud.setMainApp(this);
@@ -79,35 +86,28 @@ public class Main extends Application {
   public static void main(String[] args) {
     launch(args);
   }
-/*
-  public void ezarpenakErakutsi() {
-    stage.setScene(new Scene(ezarpenakUI));
-    stage.show();
-    ezarpenakKud.getEzarpenak();
-  }
 
- */
 
   public void herrialdeaAukeratu(){
-    stage.setScene(new Scene(herriAukeratuUI));
+    stage.setScene(herriAukScene);
     stage.show();
     herriKud.hasi();
   }
 
   public void bozkatuDuErakutsi(Herrialde h) {
-    stage.setScene(new Scene(bozkatuDuUI,450,275));
+    stage.setScene(bozkatuDuScene);
     stage.show();
     bozDuKud.hasieratu(h);
   }
 
   public void bozTaulaErakutsi(Herrialde h) {
-    stage.setScene(new Scene(bozTaulaUI,450,275));
+    stage.setScene(bozTaulaScene);
     stage.show();
     bozTaulaKud.erakutsi();
   }
 
-  public void topErakutsi(){
-    stage.setScene(new Scene(topUI,450,275));
+  public void topErakutsi() throws SQLException {
+    stage.setScene(topScene);
     stage.show();
     topKud.erakutsi();
   }

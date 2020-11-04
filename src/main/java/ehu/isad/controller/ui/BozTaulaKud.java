@@ -2,7 +2,7 @@ package ehu.isad.controller.ui;
 
 import ehu.isad.Main;
 import ehu.isad.model.Herrialde;
-import ehu.isad.model.StudentsModel;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -12,6 +12,9 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
+import javafx.util.converter.IntegerStringConverter;
+
+import java.sql.SQLException;
 
 public class BozTaulaKud {
 
@@ -43,8 +46,10 @@ public class BozTaulaKud {
 
     private Herrialde herri;
 
+    private ObservableList<Herrialde> herrialdeList;
+
     @FXML
-    void bozkatu(ActionEvent event){
+    void bozkatu(ActionEvent event) throws SQLException {
         main.topErakutsi();
     }
 
@@ -57,10 +62,10 @@ public class BozTaulaKud {
         izenaId.setCellValueFactory(new PropertyValueFactory<>("izena"));
         artistaId.setCellValueFactory(new PropertyValueFactory<>("taldea"));
         abestiaId.setCellValueFactory(new PropertyValueFactory<>("abestia"));
-        puntuakId.setCellFactory(new PropertyValueFactory<>(0));
+        //puntuakId.setCellValueFactory(new PropertyValueFactory<>(0));
 
         banderaId.setCellValueFactory(new PropertyValueFactory<Herrialde, Image>("irudia"));
-        
+
         banderaId.setCellFactory(p -> new TableCell<>() {
                     public void updateItem(Image image, boolean empty) {
                         if (image != null && !empty){
@@ -76,24 +81,19 @@ public class BozTaulaKud {
                             setText(null);
                         }
                     };
-    }
-    
+        });
+        puntuakId.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
-/*
-        iznaId.setCellFactory(
-                TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-                
- */
 
-    Callback<TableColumn<StudentsModel, String>, TableCell<StudentsModel, String>> defaultTextFieldCellFactory
-            = TextFieldTableCell.<StudentsModel>forTableColumn();
+
+        Callback<TableColumn<Herrialde, String>, TableCell<Herrialde, String>> defaultTextFieldCellFactory = TextFieldTableCell.<Herrialde>forTableColumn();
 
         abestiaId.setCellFactory(col -> {
-        TableCell<StudentsModel, String> cell = defaultTextFieldCellFactory.call(col);
+        TableCell<Herrialde, String> cell = defaultTextFieldCellFactory.call(col);
 
-        cell.setOnMouseClicked(event -> {
+        cell.setOnMouseClicked(event -> { //Bozkatzen duen herrialdea bere burua ez bozkatzeko
             if (! cell.isEmpty()) {
-                if (cell.getTableView().getSelectionModel().getSelectedItem().getFirstName().equals("Jon")) {
+                if (cell.getTableView().getSelectionModel().getSelectedItem().getName().equals(herri.getName())) {
                     cell.setEditable(false);
                 }else {
                     cell.setEditable(true);
@@ -104,19 +104,16 @@ public class BozTaulaKud {
         return cell ;
     });
 
+/*
+        abestiaId.setOnEditCommit(t -> {
+            t.getTableView().getItems().get(t.getTablePosition().getRow()).gehituPuntuak(t.getNewValue());
+        });
 
-        abestiaId.setOnEditCommit(
-    t -> {
-        t.getTableView().getItems().get(t.getTablePosition().getRow())
-                .setLastName(t.getNewValue());
+ */
 
+       banderaId.setCellValueFactory(new PropertyValueFactory<Herrialde, Image>("image"));
 
-    }
-        );
-
-       image.setCellValueFactory(new PropertyValueFactory<StudentsModel, Image>("image"));
-
-       image.setCellFactory(p -> new TableCell<>() {
+       banderaId.setCellFactory(p -> new TableCell<>() {
         public void updateItem(Image image, boolean empty) {
             if (image != null && !empty){
                 final ImageView imageview = new ImageView();
@@ -134,39 +131,8 @@ public class BozTaulaKud {
     });
 
     //add your data to the table here.
-        tbData.setItems(studentsModels);
+        tableId.setItems(herrialdeList);
 }
 
 
-    public void setMainApp(Main main) {
-        this.main = main;
-    }
-
-    public void sartu(ActionEvent actionEvent) {
-
-//        try(InputStream in = new URL("https://www.eldiario.es/fotos/mejores-memes-debate-electoral_EDIIMA20191102_0433_26.jpg").
-//            openStream()){
-//            Files.copy(in, Paths.get("build/resources/main/memes.jpg"));
-//            Files.copy(in, Paths.get("src/main/resources/memes.jpg"));
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-        studentsModels.add(new StudentsModel(studentid++,"meme","last", "security.png"));
-
-    }
-
-    public void gorde(ActionEvent actionEvent) {
-        System.out.println("gorde");
-    }
-
-    public void ezabatu(ActionEvent actionEvent) {
-        int selectedIndex = tbData.getSelectionModel().getSelectedIndex();
-        if (selectedIndex>=0)
-            studentsModels.remove(selectedIndex);
-    }
-
-    //listern metodoak jarri behar dira
 }

@@ -30,4 +30,8 @@ public class Herrialde {
     public String getIrudiPath() {
         return irudiPath;
     }
+
+    public void setPuntuak(int n) {
+        this.puntuak = n;
+    }
 }

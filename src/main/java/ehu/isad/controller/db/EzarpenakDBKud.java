@@ -1,7 +1,7 @@
 package ehu.isad.controller.db;
 
-import ehu.isad.model.Ezarpena;
 import ehu.isad.model.Herrialde;
+import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -56,5 +56,20 @@ public class EzarpenakDBKud {
     else{
       return false;
     }
+  }
+
+  public List<Herrialde> topLortu() throws SQLException {
+    ResultSet rs = dbkud.execSQL("select herrialdea,artista,abestia,puntuak from Ordezkaritza where urtea=YEAR(CURDATE())");
+    int i = 0;
+    List<Herrialde> lista = new ArrayList<Herrialde>();
+    while(rs.next() && i<4){
+      String herrialdea = rs.getString("herrialdea");
+      String artista = rs.getString("artista");
+      String abestia = rs.getString("abestia");
+      int puntuak = rs.getInt("puntuak");
+      Herrialde h = new Herrialde(herrialdea,artista,abestia,"irudiak/"+herrialdea+".png");
+      h.setPuntuak(puntuak);
+    }
+    return lista;
   }
 }

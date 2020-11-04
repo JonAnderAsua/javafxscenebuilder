@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 
 import ehu.isad.Main;
 import ehu.isad.controller.db.EzarpenakDBKud;
-import ehu.isad.model.Ezarpena;
 import ehu.isad.model.Herrialde;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

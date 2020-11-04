@@ -1,6 +1,7 @@
 package ehu.isad.controller.ui;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import ehu.isad.Main;
@@ -32,8 +33,8 @@ public class BozDuKud {
     private Herrialde herri;
 
     @FXML
-    void bueltatu(ActionEvent event) { //Jadanik bozkatu duenez top 3-ra joango da
-        main.topErakutsi(herri);
+    void bueltatu(ActionEvent event) throws SQLException { //Jadanik bozkatu duenez top 3-ra joango da
+        main.topErakutsi();
     }
 
     public void setMainApp(Main m){main = m;}
