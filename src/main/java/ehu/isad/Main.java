@@ -94,11 +94,6 @@ public class Main extends Application {
     herriKud.hasi();
   }
 
-  public void hasieraErakutsi(){
-    stage.setScene(new Scene(hasieraUI, 450, 275));
-    stage.show();
-  }
-
   public void bozkatuDuErakutsi(Herrialde h) {
     stage.setScene(new Scene(bozkatuDuUI,450,275));
     stage.show();

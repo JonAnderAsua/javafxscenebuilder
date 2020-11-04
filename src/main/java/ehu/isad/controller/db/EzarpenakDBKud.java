@@ -20,10 +20,11 @@ public class EzarpenakDBKud {
 
   private EzarpenakDBKud (){}
 
+  DBKudeatzaile dbkud = DBKudeatzaile.getInstantzia();
+
   public List<Herrialde> lortuEzarpenak(){
 
     List<Herrialde> emaitza = new ArrayList<>();
-    DBKudeatzaile dbkud = DBKudeatzaile.getInstantzia();
 
     String query = "select herrialdea,artista,abestia from Ordezkaritza where urtea=YEAR(CURDATE())";
     ResultSet rs = dbkud.execSQL(query);
@@ -40,14 +41,20 @@ public class EzarpenakDBKud {
     }catch (SQLException e){
       System.err.println(e);
     }
-
-
     return emaitza;
   }
 
   public void eguneratu() {
-    DBKudeatzaile dbkud = DBKudeatzaile.getInstantzia();
     dbkud.execSQL("INSERT INTO properties ('userid', 'key', 'value') values ('5','6','7')");
+  }
 
+  public boolean bozkatuDu(Herrialde h) throws SQLException {
+    ResultSet rs = dbkud.execSQL("SELECT bozkatuDu FROM BOZKAKETA WHERE bozkatuDU LIKE "+h.getName()+";");
+    if(rs.next()){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 }

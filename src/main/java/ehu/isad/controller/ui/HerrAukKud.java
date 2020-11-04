@@ -1,6 +1,7 @@
 package ehu.isad.controller.ui;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -37,12 +38,12 @@ public class HerrAukKud {
     private Main main;
 
     @FXML
-    void aukeratu(ActionEvent event) {
+    void aukeratu(ActionEvent event) throws SQLException {
         Herrialde h = comboBoxId.getValue();
-        if(h.bozkatuDu()){
+        if(ezkud.bozkatuDu(h)){ //Herrialdeak jadanik bozkatu badu
             main.bozkatuDuErakutsi(h);
         }
-        else{
+        else{ //Herrialdea oraindik ez du bozkatu
             h.bozkatu();
             main.bozTaulaErakutsi(h);
         }

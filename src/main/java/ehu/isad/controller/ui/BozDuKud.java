@@ -38,7 +38,7 @@ public class BozDuKud {
     public void setMainApp(Main m){main = m;}
 
     public void hasieratu(Herrialde h){
-        irudiaId.setImage(Irudia.getInstantzia().irudiaKargatu(h.getName()));
+        //Irudia kargatzea falta da
         labelId.setText(h.getName()+" jada banatu ditu bere puntuak");
     }
 }
