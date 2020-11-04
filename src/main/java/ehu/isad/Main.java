@@ -101,5 +101,14 @@ public class Main extends Application {
   }
 
   public void bozTaulaErakutsi(Herrialde h) {
+    stage.setScene(new Scene(bozTaulaUI,450,275));
+    stage.show();
+    bozTaulaKud.erakutsi();
+  }
+
+  public void topErakutsi(){
+    stage.setScene(new Scene(topUI,450,275));
+    stage.show();
+    topKud.erakutsi();
   }
 }

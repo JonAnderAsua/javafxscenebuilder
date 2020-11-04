@@ -29,16 +29,16 @@ public class BozDuKud {
     private Label labelId;
 
     private Main main;
+    private Herrialde herri;
 
     @FXML
-    void bueltatu(ActionEvent event) {
-        //Top 3ra bidali
-   }
+    void bueltatu(ActionEvent event) { //Jadanik bozkatu duenez top 3-ra joango da
+        main.topErakutsi(herri);
+    }
 
     public void setMainApp(Main m){main = m;}
 
     public void hasieratu(Herrialde h){
-        //Irudia kargatzea falta da
         labelId.setText(h.getName()+" jada banatu ditu bere puntuak");
     }
 }

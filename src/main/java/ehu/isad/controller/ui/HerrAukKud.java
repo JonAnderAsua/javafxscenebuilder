@@ -44,7 +44,6 @@ public class HerrAukKud {
             main.bozkatuDuErakutsi(h);
         }
         else{ //Herrialdea oraindik ez du bozkatu
-            h.bozkatu();
             main.bozTaulaErakutsi(h);
         }
     }
