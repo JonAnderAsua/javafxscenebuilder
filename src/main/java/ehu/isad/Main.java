@@ -64,21 +64,21 @@ public class Main extends Application {
 
     //Aukeratutako herrialdea bozkatu badu
     FXMLLoader loaderBozBai = new FXMLLoader(getClass().getResource("/bozkatuDu.fxml"));
-    bozkatuDuUI = (Parent) loaderMain.load();
-    bozDuKud = loaderMain.getController();
+    bozkatuDuUI = (Parent) loaderBozBai.load();
+    bozDuKud = loaderBozBai.getController();
     bozDuKud.setMainApp(this);
 
 
     //Aukeratutako herrialdea bozkatzeko
     FXMLLoader loaderBozTaula = new FXMLLoader(getClass().getResource("/bozTaula.fxml"));
-    bozTaulaUI = (Parent) loaderMain.load();
-    bozTaulaKud = loaderMain.getController();
+    bozTaulaUI = (Parent) loaderBozTaula.load();
+    bozTaulaKud = loaderBozTaula.getController();
     bozTaulaKud.setMainApp(this);
 
     //Top 3
     FXMLLoader loaderTop = new FXMLLoader((getClass().getResource("top.fxml")));
-    topUI = (Parent) loaderMain.load();
-    topKud = loaderMain.getController();
+    topUI = (Parent) loaderTop.load();
+    topKud = loaderTop.getController();
     topKud.setMainApp(this);
   }
 

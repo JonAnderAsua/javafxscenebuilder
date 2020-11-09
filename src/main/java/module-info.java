@@ -1,5 +1,4 @@
-open module scenebuilder {
-
+open module scenebuilder{
   requires java.sql;
   requires javafx.base;
   requires javafx.fxml;
