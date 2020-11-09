@@ -38,7 +38,6 @@ public class EzarpenakDBKud {
         String artista = rs.getString("artista");
         String abestia = rs.getString("abestia");
 
-
         emaitza.add(new Herrialde(herrialdea,artista,abestia,"irudiak/"+herrialdea+".png"));
       }
     }catch (SQLException e){
