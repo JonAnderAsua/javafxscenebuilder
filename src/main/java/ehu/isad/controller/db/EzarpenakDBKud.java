@@ -26,7 +26,10 @@ public class EzarpenakDBKud {
 
     List<Herrialde> emaitza = new ArrayList<>();
 
-    String query = "select herrialdea,artista,abestia from Ordezkaritza where urtea=YEAR(CURDATE())";
+    String query = "select herrialdea, artista, abestia,bandera, puntuak from Ordezkaritza\n" +
+            " JOIN ParteHartzea on ParteHartzea.izena=Ordezkaritza.herrialdea\n" +
+            " JOIN Herrialde on Herrialde.izena=Ordezkaritza.herrialdea\n" +
+            " where ParteHartzea.urtea = strftime('%Y', 'now') and Ordezkaritza.urtea =strftime('%Y','now') and etorrikoDa='Bai'";
     ResultSet rs = dbkud.execSQL(query);
 
     try {
@@ -59,7 +62,7 @@ public class EzarpenakDBKud {
   }
 
   public List<Herrialde> topLortu() throws SQLException {
-    ResultSet rs = dbkud.execSQL("select herrialdea,artista,abestia,puntuak from Ordezkaritza where urtea=YEAR(CURDATE())");
+    ResultSet rs = dbkud.execSQL("select herrialdea,artista,abestia,puntuak from Ordezkaritza where urtea=YEAR(DATE())");
     int i = 0;
     List<Herrialde> lista = new ArrayList<Herrialde>();
     while(rs.next() && i<4){

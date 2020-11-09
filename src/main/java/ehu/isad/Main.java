@@ -27,11 +27,7 @@ public class Main extends Application {
   private BozTaulaKud bozTaulaKud;
   private TopKud topKud;
 
-  private Scene hasieraScene = new Scene(hasieraUI,450,275);
-  private Scene herriAukScene = new Scene(herriAukeratuUI,450,275);
-  private Scene bozkatuDuScene = new Scene(bozkatuDuUI,450,275);
-  private Scene bozTaulaScene = new Scene(bozTaulaUI,450,275);
-  private Scene topScene = new Scene(topUI,450,275);
+
 
 
   @Override
@@ -41,7 +37,7 @@ public class Main extends Application {
     pantailakKargatu();
 
     stage.setTitle("Eurobisioa");
-    stage.setScene(hasieraScene);
+    stage.setScene(new Scene(hasieraUI,450,275));
     stage.show();
   }
 
@@ -76,7 +72,7 @@ public class Main extends Application {
     bozTaulaKud.setMainApp(this);
 
     //Top 3
-    FXMLLoader loaderTop = new FXMLLoader((getClass().getResource("top.fxml")));
+    FXMLLoader loaderTop = new FXMLLoader((getClass().getResource("/top.fxml")));
     topUI = (Parent) loaderTop.load();
     topKud = loaderTop.getController();
     topKud.setMainApp(this);
@@ -89,25 +85,25 @@ public class Main extends Application {
 
 
   public void herrialdeaAukeratu(){
-    stage.setScene(herriAukScene);
+    stage.setScene(new Scene(herriAukeratuUI,450,275));
     stage.show();
     herriKud.hasi();
   }
 
   public void bozkatuDuErakutsi(Herrialde h) {
-    stage.setScene(bozkatuDuScene);
+    stage.setScene(new Scene(bozkatuDuUI,450,275));
     stage.show();
     bozDuKud.hasieratu(h);
   }
 
   public void bozTaulaErakutsi(Herrialde h) {
-    stage.setScene(bozTaulaScene);
+    stage.setScene(new Scene(bozTaulaUI,450,275));
     stage.show();
     bozTaulaKud.erakutsi();
   }
 
   public void topErakutsi() throws SQLException {
-    stage.setScene(topScene);
+    stage.setScene(new Scene(topUI,450,275));
     stage.show();
     topKud.erakutsi();
   }
