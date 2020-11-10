@@ -7,16 +7,17 @@ public class Herrialde {
     private String izena;
     private String taldea;
     private String abestia;
-    private int puntuak = 0;
+    private int puntuak ;
     private Image irudia;
     private String irudiPath;
 
-    public Herrialde(String izena, String taldea, String abestia, String irudiP) {
+    public Herrialde(String izena, String taldea, String abestia, String irudiP,int punt) {
         this.izena = izena;
         this.taldea = taldea;
         this.abestia = abestia;
         this.irudiPath = irudiP;
         this.irudia = new Image(irudiP);
+        this.puntuak = punt;
     }
 
     public void gehituPuntuak(int n){ puntuak =+ n; }

@@ -34,11 +34,13 @@ public class EzarpenakDBKud {
 
     try {
       while (rs.next()) {
-        String herrialdea = rs.getString("herrialdea");
+        String izena = rs.getString("herrialdea");
         String artista = rs.getString("artista");
         String abestia = rs.getString("abestia");
-
-        emaitza.add(new Herrialde(herrialdea,artista,abestia,"irudiak/"+herrialdea+".png"));
+        String bandera = rs.getString("bandera");
+        Integer puntuak = rs.getInt("puntuak");
+        Herrialde herrialde = new Herrialde(izena, artista, abestia, "irudiak/"+bandera+".png",puntuak);
+        emaitza.add(herrialde);
       }
     }catch (SQLException e){
       System.err.println(e);
@@ -69,8 +71,7 @@ public class EzarpenakDBKud {
       String artista = rs.getString("artista");
       String abestia = rs.getString("abestia");
       int puntuak = rs.getInt("puntuak");
-      Herrialde h = new Herrialde(herrialdea,artista,abestia,"irudiak/"+herrialdea+".png");
-      h.setPuntuak(puntuak);
+      Herrialde h = new Herrialde(herrialdea,artista,abestia,"irudiak/"+herrialdea+".png",puntuak);
     }
     return lista;
   }
