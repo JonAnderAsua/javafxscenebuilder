@@ -26,10 +26,7 @@ public class EzarpenakDBKud {
 
     List<Herrialde> emaitza = new ArrayList<>();
 
-    String query = "select herrialdea, artista, abestia,bandera, puntuak from Ordezkaritza\n" +
-            " JOIN ParteHartzea on ParteHartzea.izena=Ordezkaritza.herrialdea\n" +
-            " JOIN Herrialde on Herrialde.izena=Ordezkaritza.herrialdea\n" +
-            " where ParteHartzea.urtea = strftime('%Y', 'now') and Ordezkaritza.urtea =strftime('%Y','now') and etorrikoDa='Bai'";
+    String query = "SELECT O.herrialdea,H.bandera,O.artista,O.abestia,O.puntuak FROM Herrialde H join Ordezkaritza O on H.izena = O.herrialdea JOIN ParteHartzea P on O.herrialdea = P.izena WHERE O.urtea = 2019 AND P.etorrikoDa = 'Bai'";
     ResultSet rs = dbkud.execSQL(query);
 
     try {
@@ -48,17 +45,13 @@ public class EzarpenakDBKud {
     return emaitza;
   }
 
-  public void eguneratu() {
-    dbkud.execSQL("INSERT INTO properties ('userid', 'key', 'value') values ('5','6','7')");
-  }
-
   public boolean bozkatuDu(Herrialde h) throws SQLException {
     ResultSet rs = dbkud.execSQL("SELECT bozkatuDu FROM BOZKAKETA WHERE bozkatuDU LIKE "+h.getName()+";");
-    if(rs.next()){
-      return true;
+    if(rs == null){
+      return false;
     }
     else{
-      return false;
+      return true;
     }
   }
 

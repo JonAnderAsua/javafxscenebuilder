@@ -1,6 +1,7 @@
 package ehu.isad.controller.ui;
 
 import ehu.isad.Main;
+import ehu.isad.controller.db.EzarpenakDBKud;
 import ehu.isad.model.Herrialde;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,6 +16,7 @@ import javafx.util.Callback;
 import javafx.util.converter.IntegerStringConverter;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class BozTaulaKud {
 
@@ -46,7 +48,7 @@ public class BozTaulaKud {
 
     private Herrialde herri;
 
-    private ObservableList<Herrialde> herrialdeList;
+    private List<Herrialde> herrialdeList = EzarpenakDBKud.getInstantzia().lortuEzarpenak();
 
     @FXML
     void bozkatu(ActionEvent event) throws SQLException {
@@ -58,11 +60,14 @@ public class BozTaulaKud {
     }
 
     public void erakutsi() {
+
+        //add your data to the table here.
+        tableId.getItems().setAll(herrialdeList);
+
         tableId.setEditable(true);
         izenaId.setCellValueFactory(new PropertyValueFactory<>("izena"));
         artistaId.setCellValueFactory(new PropertyValueFactory<>("taldea"));
         abestiaId.setCellValueFactory(new PropertyValueFactory<>("abestia"));
-        //puntuakId.setCellValueFactory(new PropertyValueFactory<>(0));
 
         banderaId.setCellValueFactory(new PropertyValueFactory<Herrialde, Image>("irudia"));
 
@@ -130,8 +135,6 @@ public class BozTaulaKud {
         };
     });
 
-    //add your data to the table here.
-        tableId.setItems(herrialdeList);
 }
 
 

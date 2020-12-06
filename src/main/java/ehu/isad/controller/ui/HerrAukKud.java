@@ -52,7 +52,10 @@ public class HerrAukKud {
 
     public void hasi(){
        parteHartu = ezkud.lortuEzarpenak();
-       obsHerrialde.addAll(parteHartu);
-       comboBoxId.setItems(obsHerrialde);
+        for (int i = 0 ; i < parteHartu.size() ; i++){
+           //obsHerrialde.add(parteHartu.get(i)); //Da nullpointer
+           comboBoxId.getItems().add(parteHartu.get(i));
+       }
+
     }
 }
